@@ -1,0 +1,53 @@
+@model IEnumerable<SIC.Models.Dimensions>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DimensionsId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.depth)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DimensionsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depth)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

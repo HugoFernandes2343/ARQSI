@@ -1,0 +1,2161 @@
+{
+	"info": {
+		"_postman_id": "73c5e1e0-01a2-4a0f-9c4d-5bcf1966babe",
+		"name": "Arqsi_Test_it2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Product GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87b4d614-b924-4f44-a6db-78a3fdfbae1c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Find name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"pm.test(\"Find materials\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"materials\");",
+									"});",
+									"",
+									"pm.test(\"Find category\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"category\");",
+									"});",
+									"",
+									"pm.test(\"Find dimensions\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"dimensions\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Product is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"productsId\": 32,",
+									"    \"name\": \"prod\",",
+									"    \"dimensions\": [",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 200,",
+									"            \"width\": 250,",
+									"            \"height\": 300,",
+									"            \"maxDepth\": null,",
+									"            \"maxWidth\": null,",
+									"            \"maxHeight\": null",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 300,",
+									"            \"width\": 300,",
+									"            \"height\": 300,",
+									"            \"maxDepth\": null,",
+									"            \"maxWidth\": null,",
+									"            \"maxHeight\": null",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 250,",
+									"            \"width\": 300,",
+									"            \"height\": 400,",
+									"            \"maxDepth\": 450,",
+									"            \"maxWidth\": 550,",
+									"            \"maxHeight\": 450",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 250,",
+									"            \"width\": 250,",
+									"            \"height\": 250,",
+									"            \"maxDepth\": 500,",
+									"            \"maxWidth\": 550,",
+									"            \"maxHeight\": 500",
+									"        }",
+									"    ],",
+									"    \"materials\": [",
+									"        {",
+									"            \"materialId\": 58,",
+									"            \"name\": \"Wood\",",
+									"            \"finishDto\": [",
+									"                {",
+									"                    \"finishId\": 82,",
+									"                    \"name\": \"Polished\"",
+									"                }",
+									"            ]",
+									"        },",
+									"        {",
+									"            \"materialId\": 59,",
+									"            \"name\": \"Metal\",",
+									"            \"finishDto\": [",
+									"                {",
+									"                    \"finishId\": 83,",
+									"                    \"name\": \"Polished\"",
+									"                },",
+									"                {",
+									"                    \"finishId\": 84,",
+									"                    \"name\": \"Painted\"",
+									"                }",
+									"            ]",
+									"        }",
+									"    ],",
+									"    \"cat\": {",
+									"        \"name\": \"Closet;Living Room\",",
+									"        \"categoryId\": 54}",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/32",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "636ec5d8-1229-449b-a567-d08944c1e838",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Parts GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f70e4623-5af2-4b8d-a819-b4d3086d4c87",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Find name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"pm.test(\"Find materials\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"materials\");",
+									"});",
+									"",
+									"pm.test(\"Find category\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"category\");",
+									"});",
+									"",
+									"pm.test(\"Find dimensions\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"dimensions\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/33/Parts",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"33",
+								"Parts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Parts GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ab6d3a2-ff70-45ce-a70d-040038d66019",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/1000/Parts",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"1000",
+								"Parts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_PartOf GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0c60497-ffca-4ae1-b870-aa26dd20aaab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Find name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"pm.test(\"Find materials\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"materials\");",
+									"});",
+									"",
+									"pm.test(\"Find category\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"category\");",
+									"});",
+									"",
+									"pm.test(\"Find dimensions\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"dimensions\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/32/PartOff",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"32",
+								"PartOff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_PartOf GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b2432a7-f07b-4fe1-9365-b9f489f622c9",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/1000/PartOff",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"1000",
+								"PartOff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Restriction GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0af894fe-3d5e-4fa1-a62a-a43f71770efe",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Find restrictionId\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"restrictionId\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/32/Restrictions",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"32",
+								"Restrictions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Restriction GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "371c60ee-fdac-4e81-a90d-ac4f5b38de02",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Find nothing\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/1000/Restrictions",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"1000",
+								"Restrictions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Search GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d91ad05-daab-4c60-a4f3-581724a25f51",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Find name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"pm.test(\"Find materials\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"materials\");",
+									"});",
+									"",
+									"pm.test(\"Find category\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"category\");",
+									"});",
+									"",
+									"pm.test(\"Find dimensions\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"dimensions\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Product is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"productsId\": 32,",
+									"    \"name\": \"prod\",",
+									"    \"dimensions\": [",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 200,",
+									"            \"width\": 250,",
+									"            \"height\": 300,",
+									"            \"maxDepth\": null,",
+									"            \"maxWidth\": null,",
+									"            \"maxHeight\": null",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 300,",
+									"            \"width\": 300,",
+									"            \"height\": 300,",
+									"            \"maxDepth\": null,",
+									"            \"maxWidth\": null,",
+									"            \"maxHeight\": null",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 250,",
+									"            \"width\": 300,",
+									"            \"height\": 400,",
+									"            \"maxDepth\": 450,",
+									"            \"maxWidth\": 550,",
+									"            \"maxHeight\": 450",
+									"        },",
+									"        {",
+									"            \"dimensionsId\": 0,",
+									"            \"depth\": 250,",
+									"            \"width\": 250,",
+									"            \"height\": 250,",
+									"            \"maxDepth\": 500,",
+									"            \"maxWidth\": 550,",
+									"            \"maxHeight\": 500",
+									"        }",
+									"    ],",
+									"    \"materials\": [",
+									"        {",
+									"            \"materialId\": 58,",
+									"            \"name\": \"Wood\",",
+									"            \"finishDto\": [",
+									"                {",
+									"                    \"finishId\": 82,",
+									"                    \"name\": \"Polished\"",
+									"                }",
+									"            ]",
+									"        },",
+									"        {",
+									"            \"materialId\": 59,",
+									"            \"name\": \"Metal\",",
+									"            \"finishDto\": [",
+									"                {",
+									"                    \"finishId\": 83,",
+									"                    \"name\": \"Polished\"",
+									"                },",
+									"                {",
+									"                    \"finishId\": 84,",
+									"                    \"name\": \"Painted\"",
+									"                }",
+									"            ]",
+									"        }",
+									"    ],",
+									"    \"cat\": {",
+									"        \"name\": \"Closet;Living Room\",",
+									"        \"categoryId\": 54",
+									"    }",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/Search/prod",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"Search",
+								"prod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Search GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61d187e9-cefb-43ed-82e6-1e9a56804a7c",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/Search/fail",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"Search",
+								"fail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product POST (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2d132f3-fc67-4c2b-9942-69c1c7f29e19",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"There already is a product with this name\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"prod\",\n    \"dimensions\": [\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 200,\n            \"width\": 250,\n            \"height\": 300,\n            \"maxDepth\": null,\n            \"maxWidth\": null,\n            \"maxHeight\": null\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 300,\n            \"width\": 300,\n            \"height\": 300,\n            \"maxDepth\": null,\n            \"maxWidth\": null,\n            \"maxHeight\": null\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 250,\n            \"width\": 300,\n            \"height\": 400,\n            \"maxDepth\": 450,\n            \"maxWidth\": 550,\n            \"maxHeight\": 450\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 250,\n            \"width\": 250,\n            \"height\": 250,\n            \"maxDepth\": 500,\n            \"maxWidth\": 550,\n            \"maxHeight\": 500\n        }\n    ],\n    \"materials\": [\n        {\n            \"materialId\": 58,\n            \"name\": \"Wood\",\n            \"finishDto\": [\n                {\n                    \"finishId\": 82,\n                    \"name\": \"Polished\"\n                }\n            ]\n        },\n        {\n            \"materialId\": 59,\n            \"name\": \"Metal\",\n            \"finishDto\": [\n                {\n                    \"finishId\": 83,\n                    \"name\": \"Polished\"\n                },\n                {\n                    \"finishId\": 84,\n                    \"name\": \"Painted\"\n                }\n            ]\n        }\n    ],\n    \"cat\": {\n        \"name\": \"Closet;Living Room\",\n        \"categoryId\": 54\n    }\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product PUT (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea2eb846-4bcc-49b7-b642-fbfd82b4640c",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include('There already is a product with this name');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"prod\",\n    \"dimensions\": [\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 200,\n            \"width\": 250,\n            \"height\": 300,\n            \"maxDepth\": null,\n            \"maxWidth\": null,\n            \"maxHeight\": null\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 300,\n            \"width\": 300,\n            \"height\": 300,\n            \"maxDepth\": null,\n            \"maxWidth\": null,\n            \"maxHeight\": null\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 250,\n            \"width\": 300,\n            \"height\": 400,\n            \"maxDepth\": 450,\n            \"maxWidth\": 550,\n            \"maxHeight\": 450\n        },\n        {\n            \"dimensionsId\": 0,\n            \"depth\": 250,\n            \"width\": 250,\n            \"height\": 250,\n            \"maxDepth\": 500,\n            \"maxWidth\": 550,\n            \"maxHeight\": 500\n        }\n    ],\n    \"materials\": [\n        {\n            \"materialId\": 58,\n            \"name\": \"Wood\",\n            \"finishDto\": [\n                {\n                    \"finishId\": 82,\n                    \"name\": \"Polished\"\n                }\n            ]\n        },\n        {\n            \"materialId\": 59,\n            \"name\": \"Metal\",\n            \"finishDto\": [\n                {\n                    \"finishId\": 83,\n                    \"name\": \"Polished\"\n                },\n                {\n                    \"finishId\": 84,\n                    \"name\": \"Painted\"\n                }\n            ]\n        }\n    ],\n    \"cat\": {\n        \"name\": \"Closet;Living Room\",\n        \"categoryId\": 54\n    }\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/33",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"33"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restriction",
+			"item": [
+				{
+					"name": "Restriction GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02b84b85-f9f8-4db8-8a28-3b52d250ac63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Restriction is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"x\": 50,",
+									"    \"y\": 50,",
+									"    \"z\": 50,",
+									"    \"restrictionId\": 20,",
+									"    \"aggregation\": {",
+									"        \"aggregationId\": 12,",
+									"        \"containingProduct\": \"prod1\",",
+									"        \"containedProduct\": \"prod\",",
+									"        \"mandatory\": false",
+									"    }",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Restriction/20",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Restriction",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restriction GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25a3c5db-2b99-4905-a017-d389d41809b7",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Restriction/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Restriction",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restriction DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee110e43-12d0-4faf-bcab-34a6148fd3fd",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"x\": 50,\n    \"y\": 50,\n    \"z\": 50,\n    \"aggregation\": {\n        \"aggregationId\": 12,\n        \"containingProduct\": \"prod1\",\n        \"containedProduct\": \"prod\",\n        \"mandatory\": false\n    }\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Restriction/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Restriction",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material",
+			"item": [
+				{
+					"name": "Material GET ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bb36b9f8-7031-4ae3-83e1-b4818185b2cc",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Find name\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"});",
+									"",
+									"pm.test(\"Find materialId\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"materialId\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Material is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"materialId\": 60,",
+									"    \"name\": \"Wood\",",
+									"    \"finishDto\": [",
+									"        {",
+									"            \"finishId\": 85,",
+									"            \"name\": \"Varnished\"",
+									"        },",
+									"        {",
+									"            \"finishId\": 86,",
+									"            \"name\": \"Ornamented\"",
+									"        }",
+									"    ]",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Material/60/details",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Material",
+								"60",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Material GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44267fc6-c292-4d79-b8f2-c8ad1c0c4d92",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Product/1000/details",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Product",
+								"1000",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Material POST (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b1722fe-c8d7-4bb7-aa0e-7b71d4c4699f",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"A material with that name already exists\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Wood\",\n    \"finishDto\": [\n        {\n            \"finishId\": 85,\n            \"name\": \"Varnished\"\n        },\n        {\n            \"finishId\": 86,\n            \"name\": \"Ornamented\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Material/57",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Material",
+								"57"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Material Post (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b1722fe-c8d7-4bb7-aa0e-7b71d4c4699f",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"A material already exists with the same name\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Wood\",\n    \"finishDto\": [\n        {\n            \"finishId\": 85,\n            \"name\": \"Varnished\"\n        },\n        {\n            \"finishId\": 86,\n            \"name\": \"Ornamented\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Material",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Material"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Material DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ee425b0-d057-4eb3-b036-7e9e0cd6d208",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Wood\",\n    \"finishDto\": [\n        {\n            \"finishId\": 85,\n            \"name\": \"Varnished\"\n        },\n        {\n            \"finishId\": 86,\n            \"name\": \"Ornamented\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Material/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Material",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Finish",
+			"item": [
+				{
+					"name": "Finish GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c151fc1f-3a47-45ca-bd5c-681e6ec259cf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Finish is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"lazyLoader\": {},",
+									"    \"finishId\": 81,",
+									"    \"name\": \"Polished\"",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Finish/81",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Finish",
+								"81"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finish GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "abc51e4e-6475-4787-99f9-912c9c104179",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Finish/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Finish",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finish PUT (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "954aaf5d-1fdf-484d-a9c4-beac98788656",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"Polished\"\n    }"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Finish/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Finish",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finish DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "954aaf5d-1fdf-484d-a9c4-beac98788656",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Finish/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Finish",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dimension",
+			"item": [
+				{
+					"name": "Dimension GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93062a95-6030-49db-b1b1-a3105cb2d017",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Dimensions",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Dimensions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dimension GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a9d0068-0c69-4642-9b54-7a039d55e9cf",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Dimensions/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Dimensions",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dimensions PUT (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc6fe277-fdd3-4909-9058-a5a1c7871f38",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"depth\": 250,\n    \"width\": 300,\n    \"height\": 450,\n    \"maxDepth\": 500,\n    \"maxWidth\": 600,\n    \"maxHeight\": 700\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Dimensions/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Dimensions",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dimensions DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc6fe277-fdd3-4909-9058-a5a1c7871f38",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Dimensions/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Dimensions",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Category GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31175cfd-1071-49c1-9eaf-eaba5a72dd53",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Category is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"name\": \"Closet\",",
+									"    \"categoryId\": 53",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Category/53",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Category",
+								"53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aedebb51-3d45-4e46-bb65-12b239219276",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Category/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Category",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category PUT (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "897df49a-52fa-44a8-8a62-b3467b1e630f",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).equal(\"New Category name already exists\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Closet\",\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Category/54",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Category",
+								"54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fed4b9fa-8325-48c0-88f5-ff5b135eb80c",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Category/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Category",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aggregation",
+			"item": [
+				{
+					"name": "Aggregation GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cfde7130-585c-46f8-8781-58fd3eee4f0d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Body of this Aggregation is correct\", function () {",
+									"    pm.response.to.have.body({",
+									"    \"aggregationId\": 12,",
+									"    \"containingProduct\": \"prod1\",",
+									"    \"containedProduct\": \"prod\",",
+									"    \"mandatory\": false",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Aggregation/12",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Aggregation",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregation GET (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37f465ca-d82f-4015-9c14-1f78a9dd2715",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"    ",
+									"pm.test(\"Status code name Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Aggregation/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Aggregation",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregation POST (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b15af637-25a3-4136-8012-e80c727aaed7",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Bad Request\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.expect(pm.response.text()).equal(\"Aggregation already exists\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"containingProduct\": \"prod1\",\n    \"containedProduct\": \"prod\",\n    \"mandatory\": false\n}"
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Aggregation",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Aggregation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregation DEL (Fail)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cfde7130-585c-46f8-8781-58fd3eee4f0d",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sic-arqsi-1819.azurewebsites.net/api/Aggregation/1000",
+							"protocol": "https",
+							"host": [
+								"sic-arqsi-1819",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Aggregation",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
